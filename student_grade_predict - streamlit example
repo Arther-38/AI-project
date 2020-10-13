@@ -1,0 +1,133 @@
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import csv
+import os   
+import seaborn as sns
+import streamlit as st
+import copy
+import altair as alt
+wkDir = "c:/Users/user/OneDrive/桌面/";   os.chdir(wkDir)
+print(os.getcwd())
+
+#%%##=====######
+st.title("109 人工智慧實務專題 ")
+st.header('(1)顥示輸入數據 --')
+df = pd.read_csv('student_grade_predict.csv') 
+print(df)
+df2=copy.copy(df)
+df2
+df.iloc[[-1]]
+df.describe()
+df.info()
+df.corr()
+corr=df.corr()
+
+
+df.columns
+st.write(df.columns)
+st.title('熱量圖')
+heatmap1=sns.heatmap(corr,xticklabels=corr.columns,yticklabels=corr.columns) 
+print(heatmap1)
+st.pyplot()
+df
+G_ave=(df['G1']+df['G2']+df['G3'])/3
+print(G_ave)
+
+del df2['G1'], df2['G2'], df2['G3']
+df2['G_ave']=G_ave
+df2
+
+#school 
+
+labels=set(df2['school'])
+from collections import Counter
+size=Counter(df2['school'])
+#size
+dict(size)
+key=list(size.keys())
+value=list(size.values())
+value
+st.title('圓餅圖')
+st.write('學校學生比例')
+pict=plt.pie(value,labels=labels,autopct='%1.1f%%')
+st.pyplot()
+
+#sex
+
+#address(area)
+
+#family size
+
+#age
+
+#Pstatus: parent's cohabitation status
+
+#mother & father's education
+
+#mom & dad's jobs
+
+#reasons to choose school
+
+#guardian
+
+#traveltime 
+
+#studytime
+
+#failures
+
+#schoolsup
+
+#famsup
+
+#paid
+
+#activitues
+
+#nursery
+
+#higher
+
+#internet
+
+#romatic
+
+#family relationship
+
+#freetime
+
+#go out with friend
+
+# workday alcohol consumption (Dalc)
+
+#weekend alcohol consumption (Walc)
+
+#health
+
+#absences
+
+#%%##
+
+
+st.sidebar.title("控制板") 
+
+st.sidebar.header("(1)設定兩個繪圖變量 --")
+# st.sidebar.multiselect('選擇繪圖變量1 >> ',df2.)
+#nameX2 = st.sidebar.multiselect('選擇繪圖變量2 >> ',df.feature_names)
+st.sidebar.header("(2)繪製自定圖形 --")
+
+'''
+if st.sidebar.checkbox("開始繪圖 --"):  
+    st.header("學校人數隊平均成績 ")
+    plt.pie(value,labels=labels,autopct='%1.1f%%')
+    plt.show()
+    st.pyplot()
+'''    
